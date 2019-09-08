@@ -21,7 +21,7 @@ Will search code on GitHub by using [GitHub API](https://developer.github.com/v3
 ### How to use
 
 ```
-node index.js ${keyword} ${token} ${webhook} ${interval}
+node lib/index.js ${keyword} ${token} ${webhook} ${interval}
 ```
 
 - keyword
