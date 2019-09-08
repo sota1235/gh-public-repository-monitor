@@ -1,13 +1,13 @@
-import fetch, { Response } from 'node-fetch';
 import { fmtGhRes } from './formatter';
 import { GhClient } from './gh';
+import { SlackClient } from './slack';
 
 const keyword = process.argv[2];
 const token = process.argv[3];
-const webhook = process.argv[4];
+const webHookURL = process.argv[4];
 const interval = Number(process.argv[5]) || 5; // min
 
-if (keyword === undefined || token === undefined || webhook === undefined) {
+if (keyword === undefined || token === undefined || webHookURL === undefined) {
   console.error(
     'Execution format is `node index.js ${keyword} ${token} ${slack webhook url}`',
   );
@@ -15,29 +15,13 @@ if (keyword === undefined || token === undefined || webhook === undefined) {
 }
 
 const ghClient = new GhClient(token);
-
-const postSlack = (message: string) => {
-  return fetch(webhook, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      text: message,
-    }),
-  })
-    .then((_: Response) => {
-      console.debug('request succeeded');
-    })
-    .catch((err: Error) => {
-      console.error(err);
-      process.exit(1);
-    });
-};
+const slackClient = new SlackClient(webHookURL);
 
 setInterval(() => {
   console.log('searching...');
   ghClient
     .searchCode(keyword)
-    .then((data: GhSearchCodeRes) => {
+    .then(async (data: GhSearchCodeRes) => {
       const message = fmtGhRes(data);
 
       if (message === null) {
@@ -45,7 +29,7 @@ setInterval(() => {
         return;
       }
 
-      return postSlack(message);
+      return await slackClient.post(message);
     })
     .catch((err: Error) => {
       console.error(err);
