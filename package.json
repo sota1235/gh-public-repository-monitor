@@ -3,13 +3,49 @@
   "version": "0.0.1",
   "description": "Script for monitoring public codes on GitHub",
   "main": "index.js",
+  "engines": {
+    "node": ">=v10.10.0"
+  },
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "watch": "tsc -w",
+    "fix": "prettier --write ./src/**/*.ts",
+    "tslint": "tslint -c tslint.json 'src/**/*.ts'",
+    "lint": "npm run fix && npm run tslint",
+    "test": "jest",
+    "test:ci": "jest -c ./jest.config.ci.js"
   },
   "author": "@sota1235<sota1235@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "gh-got": "^8.1.0",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "typescript": "^3.6.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.4",
+    "@types/node-fetch": "^2.5.0",
+    "husky": "^3.0.5",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.2.5",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.19.0",
+    "tslint-config-prettier": "^1.18.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run lint",
+      "git add"
+    ]
   }
 }
