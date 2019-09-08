@@ -1,13 +1,13 @@
 {
   "name": "gh-monitor",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "Script for monitoring public codes on GitHub",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "@sota1235<sota1235@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "gh-got": "^8.1.0",
     "node-fetch": "^2.6.0"
