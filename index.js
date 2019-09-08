@@ -7,7 +7,7 @@ const webhook = process.argv[4];
 const interval = process.argv[5] || 5; // min
 
 if (keyword === undefined || token === undefined || webhook === undefined) {
-  console.error('node index.js ${keyword} ${token}形式で実行してください');
+  console.error('Execution format is `node index.js ${keyword} ${token} ${slack webhook url}`');
   process.exit(1);
 }
 
