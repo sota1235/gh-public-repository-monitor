@@ -1,4 +1,4 @@
-import fetch, { Response } from 'node-fetch';
+import fetch from 'node-fetch';
 
 export class SlackClient {
   constructor(private webhHookURL: string) {}
