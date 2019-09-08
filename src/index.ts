@@ -1,6 +1,6 @@
-// @ts-ignore
 import ghGot from 'gh-got';
 import fetch, { Response } from 'node-fetch';
+import { fmtGhRes } from './formatter';
 
 const keyword = process.argv[2];
 const token = process.argv[3];
@@ -37,27 +37,10 @@ const postSlack = (message: string) => {
     });
 };
 
-const fmtGhRes = (data: any) => {
-  if (data.total_count === 0) {
-    return null;
-  }
-
-  let repoList = '';
-
-  for (const item of data.items) {
-    repoList += `Repository Name: ${item.repository.name}` + '\n';
-    repoList += `URL: ${item.url}` + '\n';
-  }
-  return `
-Count ${data.total_count}
-${repoList}
-  `;
-};
-
 setInterval(() => {
   console.log('searching...');
   search(keyword, { token })
-    .then((data: any) => {
+    .then((data: GhSearchCodeRes) => {
       const message = fmtGhRes(data);
 
       if (message === null) {
