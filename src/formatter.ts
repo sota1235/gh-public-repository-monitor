@@ -3,15 +3,16 @@ export const fmtGhRes = (data: GhSearchCodeRes): string | null => {
     return null;
   }
 
-  let repoList = '';
+  const msg = [];
 
   for (const item of data.items) {
-    repoList += `Repository Name: ${item.repository.name}` + '\n';
-    repoList += `URL: ${item.url}` + '\n';
+    msg.push(
+      `Repository Name: ${item.repository.name}` + '\n' + `URL: ${item.url}`,
+    );
   }
 
   return `
 Count ${data.total_count}
-${repoList}
-  `;
+${msg.join('\n')}
+`;
 };
