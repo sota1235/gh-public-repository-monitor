@@ -9,4 +9,12 @@ interface GhSearchCodeRes {
   }>;
 }
 
-declare module 'gh-got';
+declare module 'gh-got' {
+  interface Response {
+    body: any;
+  }
+
+  function ghGot(url: string, opts: { token: string }): Promise<Response>;
+
+  export = ghGot;
+}

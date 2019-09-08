@@ -1,6 +1,6 @@
-import ghGot from 'gh-got';
 import fetch, { Response } from 'node-fetch';
 import { fmtGhRes } from './formatter';
+import { GhClient } from './gh';
 
 const keyword = process.argv[2];
 const token = process.argv[3];
@@ -14,11 +14,7 @@ if (keyword === undefined || token === undefined || webhook === undefined) {
   process.exit(1);
 }
 
-const search = (query: string, opts: any) => {
-  const url = `search/code?q=${query}`;
-
-  return ghGot(url, opts).then((res: any) => res.body);
-};
+const ghClient = new GhClient(token);
 
 const postSlack = (message: string) => {
   return fetch(webhook, {
@@ -39,7 +35,8 @@ const postSlack = (message: string) => {
 
 setInterval(() => {
   console.log('searching...');
-  search(keyword, { token })
+  ghClient
+    .searchCode(keyword)
     .then((data: GhSearchCodeRes) => {
       const message = fmtGhRes(data);
 
