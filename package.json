@@ -13,7 +13,7 @@
     "build": "tsc",
     "watch": "tsc -w",
     "fix": "prettier --write ./src/**/*.ts",
-    "tslint": "tslint -c tslint.json 'src/**/*.ts'",
+    "tslint": "tslint -c tslint.json \"src/**/*.ts\"",
     "lint": "npm run fix && npm run tslint",
     "test": "jest",
     "test:ci": "jest -c ./jest.config.ci.js"
@@ -43,7 +43,7 @@
     }
   },
   "lint-staged": {
-    "*.ts": [
+    "src/**/*.ts": [
       "npm run lint",
       "git add"
     ]
