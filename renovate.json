@@ -13,7 +13,7 @@
     ":automergePr",
     "group:monorepos",
     "group:recommended",
-    "schedule:weekends"
+    "schedule:monthly"
   ],
   "prNotPendingHours": 1,
   "timezone": "Asia/Tokyo"
