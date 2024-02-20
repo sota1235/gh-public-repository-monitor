@@ -17,22 +17,25 @@ if (keyword === undefined || token === undefined || webHookURL === undefined) {
 const ghClient = new GhClient(token);
 const slackClient = new SlackClient(webHookURL);
 
-setInterval(() => {
-  console.log('searching...');
-  ghClient
-    .searchCode(keyword)
-    .then(async (data: GhSearchCodeRes) => {
-      const message = fmtGhRes(data);
+setInterval(
+  () => {
+    console.log('searching...');
+    ghClient
+      .searchCode(keyword)
+      .then(async (data: GhSearchCodeRes) => {
+        const message = fmtGhRes(data);
 
-      if (message === null) {
-        console.log('no repository found');
-        return;
-      }
+        if (message === null) {
+          console.log('no repository found');
+          return;
+        }
 
-      return await slackClient.post(message);
-    })
-    .catch((err: Error) => {
-      console.error(err);
-      process.exit(1);
-    });
-}, interval * 60 * 1000);
+        return await slackClient.post(message);
+      })
+      .catch((err: Error) => {
+        console.error(err);
+        process.exit(1);
+      });
+  },
+  interval * 60 * 1000,
+);
