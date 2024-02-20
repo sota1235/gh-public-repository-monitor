@@ -1,4 +1,4 @@
-gh-public-repo-monitor [![CircleCI](https://circleci.com/gh/sota1235/gh-public-repository-monitor.svg?style=svg)](https://circleci.com/gh/sota1235/gh-public-repository-monitor) [![codecov](https://codecov.io/gh/sota1235/gh-public-repository-monitor/branch/master/graph/badge.svg)](https://codecov.io/gh/sota1235/gh-public-repository-monitor)
+gh-public-repo-monitor 
 ====
 
 Simple CLI to monitor public repository on GitHub.
