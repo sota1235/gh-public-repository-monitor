@@ -1,5 +1,5 @@
 import { fmtGhRes } from './formatter';
-import { GhClient } from './gh';
+import { GhClient, GhSearchCodeRes } from './gh';
 import { SlackClient } from './slack';
 
 const keyword = process.argv[2];

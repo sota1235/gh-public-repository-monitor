@@ -13,7 +13,7 @@
     "test:ci": "jest -c ./jest.config.ci.js"
   },
   "dependencies": {
-    "gh-got": "^10.0.0",
+    "@octokit/graphql": "^7.0.2",
     "typescript": "^5.3.3"
   },
   "devDependencies": {

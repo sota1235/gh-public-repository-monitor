@@ -3,8 +3,12 @@ import { fmtGhRes } from './formatter';
 test('should return null', () => {
   expect(
     fmtGhRes({
-      total_count: 0,
-      items: [],
+      data: {
+        search: {
+          repositoryCount: 0,
+          nodes: [],
+        },
+      },
     }),
   ).toBeNull();
 });
@@ -19,21 +23,21 @@ URL: https://example.com/2
 `;
   expect(
     fmtGhRes({
-      total_count: 2,
-      items: [
-        {
-          repository: {
-            name: 'test repository',
-          },
-          url: 'https://example.com/',
+      data: {
+        search: {
+          repositoryCount: 2,
+          nodes: [
+            {
+              name: 'test repository',
+              url: 'https://example.com/',
+            },
+            {
+              name: 'test repository2',
+              url: 'https://example.com/2',
+            },
+          ],
         },
-        {
-          repository: {
-            name: 'test repository2',
-          },
-          url: 'https://example.com/2',
-        },
-      ],
+      },
     }),
   ).toBe(expectedMessage);
 });

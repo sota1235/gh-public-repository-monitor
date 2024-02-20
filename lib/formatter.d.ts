@@ -1,1 +1,2 @@
-export declare const fmtGhRes: (data: GhSearchCodeRes) => string | null;
+import { GhSearchCodeRes } from "./gh";
+export declare const fmtGhRes: (res: GhSearchCodeRes) => string | null;
