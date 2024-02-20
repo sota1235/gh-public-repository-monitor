@@ -1,4 +1,4 @@
-name: Checking code quality
+name: Checking renovate config
 
 on:
   push:

@@ -28,7 +28,7 @@ setInterval(
           return;
         }
 
-        return await slackClient.post(fmtGhRes(res));
+        return await slackClient.post(fmtGhRes(res.data.search.nodes));
       })
       .catch((err: Error) => {
         console.error(err);

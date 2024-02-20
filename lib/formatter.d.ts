@@ -1,2 +1,4 @@
-import { GhSearchCodeRes } from './gh';
-export declare const fmtGhRes: (res: GhSearchCodeRes) => string;
+export declare const fmtGhRes: (repositories: {
+    name: string;
+    url: string;
+}[]) => string;

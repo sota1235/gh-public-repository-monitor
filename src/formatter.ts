@@ -1,15 +1,16 @@
-import { GhSearchCodeRes } from './gh';
-
-export const fmtGhRes = (res: GhSearchCodeRes): string => {
-  const { data } = res;
+export const fmtGhRes = (
+  repositories: {
+    name: string;
+    url: string;
+  }[],
+): string => {
   const msg = [];
-
-  for (const item of data.search.nodes) {
+  for (const item of repositories) {
     msg.push(`Repository Name: ${item.name}` + '\n' + `URL: ${item.url}`);
   }
 
   return `
-Count ${data.search.repositoryCount}
+Count ${repositories.length}
 ${msg.join('\n')}
 `;
 };
