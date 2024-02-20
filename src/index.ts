@@ -17,6 +17,8 @@ if (keyword === undefined || token === undefined || webHookURL === undefined) {
 const ghClient = new GhClient(token);
 const slackClient = new SlackClient(webHookURL);
 
+console.log('script has started!');
+
 setInterval(
   () => {
     console.log('searching...');
