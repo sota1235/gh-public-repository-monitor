@@ -1,5 +1,5 @@
 import { fmtGhRes } from './formatter';
-import { GhClient } from './gh';
+import { GhClient, GhSearchCodeRes } from './gh';
 import { SlackClient } from './slack';
 
 const keyword = process.argv[2];
@@ -17,22 +17,23 @@ if (keyword === undefined || token === undefined || webHookURL === undefined) {
 const ghClient = new GhClient(token);
 const slackClient = new SlackClient(webHookURL);
 
-setInterval(() => {
-  console.log('searching...');
-  ghClient
-    .searchCode(keyword)
-    .then(async (data: GhSearchCodeRes) => {
-      const message = fmtGhRes(data);
+setInterval(
+  () => {
+    console.log('searching...');
+    ghClient
+      .searchCode(keyword)
+      .then(async (res: GhSearchCodeRes) => {
+        if (res.data.search.repositoryCount === 0) {
+          console.log('no repository found');
+          return;
+        }
 
-      if (message === null) {
-        console.log('no repository found');
-        return;
-      }
-
-      return await slackClient.post(message);
-    })
-    .catch((err: Error) => {
-      console.error(err);
-      process.exit(1);
-    });
-}, interval * 60 * 1000);
+        return await slackClient.post(fmtGhRes(res.data.search.nodes));
+      })
+      .catch((err: Error) => {
+        console.error(err);
+        process.exit(1);
+      });
+  },
+  interval * 60 * 1000,
+);

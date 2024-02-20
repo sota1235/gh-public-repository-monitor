@@ -1,18 +1,16 @@
-export const fmtGhRes = (data: GhSearchCodeRes): string | null => {
-  if (data.total_count === 0) {
-    return null;
-  }
-
+export const fmtGhRes = (
+  repositories: {
+    name: string;
+    url: string;
+  }[],
+): string => {
   const msg = [];
-
-  for (const item of data.items) {
-    msg.push(
-      `Repository Name: ${item.repository.name}` + '\n' + `URL: ${item.url}`,
-    );
+  for (const item of repositories) {
+    msg.push(`Repository Name: ${item.name}` + '\n' + `URL: ${item.url}`);
   }
 
   return `
-Count ${data.total_count}
+Count ${repositories.length}
 ${msg.join('\n')}
 `;
 };

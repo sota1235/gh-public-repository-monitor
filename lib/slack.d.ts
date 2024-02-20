@@ -1,5 +1,5 @@
 export declare class SlackClient {
-    private webhHookURL;
-    constructor(webhHookURL: string);
+    private webHookURL;
+    constructor(webHookURL: string);
     post(message: string): Promise<void>;
 }

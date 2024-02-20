@@ -1,1 +1,4 @@
-export declare const fmtGhRes: (data: GhSearchCodeRes) => string | null;
+export declare const fmtGhRes: (repositories: {
+    name: string;
+    url: string;
+}[]) => string;

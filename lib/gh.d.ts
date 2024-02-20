@@ -1,3 +1,14 @@
+export interface GhSearchCodeRes {
+    data: {
+        search: {
+            repositoryCount: number;
+            nodes: {
+                url: string;
+                name: string;
+            }[];
+        };
+    };
+}
 export declare class GhClient {
     private token;
     constructor(token: string);
