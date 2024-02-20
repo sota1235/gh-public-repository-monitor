@@ -4,9 +4,11 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "fix": "prettier --write ./src/**/*.ts",
-    "tslint": "tslint -c tslint.json \"src/**/*.ts\"",
-    "lint": "npm run fix && npm run tslint",
+    "prettier:fix": "prettier --write ./src/**/*.ts",
+    "eslint": "eslint src/**/*.ts",
+    "eslint:fix": "npm run eslint -- --fix",
+    "lint": "npm run eslint",
+    "fix": "npm run prettier:fix && npm run eslint:fix",
     "test": "jest",
     "test:ci": "jest -c ./jest.config.ci.js"
   },
@@ -16,16 +18,16 @@
     "typescript": "^4.0.0"
   },
   "devDependencies": {
+    "@sota1235/eslint-config": "^4.2.3",
     "@types/jest": "26.0.10",
     "@types/node": "14.6.2",
     "@types/node-fetch": "2.5.7",
+    "eslint": "^8.56.0",
     "husky": "4.2.5",
     "jest": "26.4.2",
     "lint-staged": "10.2.13",
     "prettier": "2.1.1",
-    "ts-jest": "26.3.0",
-    "tslint": "5.20.1",
-    "tslint-config-prettier": "1.18.0"
+    "ts-jest": "26.3.0"
   },
   "husky": {
     "hooks": {
