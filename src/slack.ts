@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 export class SlackClient {
   constructor(private webhHookURL: string) {}
 
