@@ -22,15 +22,13 @@ setInterval(
     console.log('searching...');
     ghClient
       .searchCode(keyword)
-      .then(async (data: GhSearchCodeRes) => {
-        const message = fmtGhRes(data);
-
-        if (message === null) {
+      .then(async (res: GhSearchCodeRes) => {
+        if (res.data.search.repositoryCount === 0) {
           console.log('no repository found');
           return;
         }
 
-        return await slackClient.post(message);
+        return await slackClient.post(fmtGhRes(res));
       })
       .catch((err: Error) => {
         console.error(err);

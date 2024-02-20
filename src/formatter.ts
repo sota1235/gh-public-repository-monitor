@@ -1,11 +1,7 @@
 import { GhSearchCodeRes } from './gh';
 
-export const fmtGhRes = (res: GhSearchCodeRes): string | null => {
+export const fmtGhRes = (res: GhSearchCodeRes): string => {
   const { data } = res;
-  if (data.search.repositoryCount === 0) {
-    return null;
-  }
-
   const msg = [];
 
   for (const item of data.search.nodes) {
