@@ -1,0 +1,23 @@
+name: Lint GitHub Actions files
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+jobs:
+  build:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: reviewdog/action-actionlint@82693e9e3b239f213108d6e412506f8b54003586 # v1
+        with:
+          tool_name: actionlint
+          reporter: github-pr-review
+          fail_on_error: true

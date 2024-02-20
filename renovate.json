@@ -1,20 +1,5 @@
 {
   "extends": [
-    ":separateMajorReleases",
-    ":ignoreUnstable",
-    ":prNotPending",
-    ":updateNotScheduled",
-    ":prHourlyLimitNone",
-    ":prConcurrentLimitNone",
-    ":automergeLinters",
-    ":automergeTesters",
-    ":automergeTypes",
-    ":automergePatch",
-    ":automergePr",
-    "group:monorepos",
-    "group:recommended",
-    "schedule:monthly"
-  ],
-  "prNotPendingHours": 1,
-  "timezone": "Asia/Tokyo"
+    "github>sota1235/renovate-config"
+  ]
 }

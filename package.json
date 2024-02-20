@@ -1,14 +1,6 @@
 {
-  "name": "gh-monitor",
-  "version": "0.0.1",
+  "private": true,
   "description": "Script for monitoring public codes on GitHub",
-  "main": "index.js",
-  "engines": {
-    "node": ">=v10.10.0"
-  },
-  "directories": {
-    "lib": "lib"
-  },
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
@@ -18,8 +10,6 @@
     "test": "jest",
     "test:ci": "jest -c ./jest.config.ci.js"
   },
-  "author": "@sota1235<sota1235@gmail.com>",
-  "license": "MIT",
   "dependencies": {
     "gh-got": "^10.0.0",
     "node-fetch": "^2.6.7",

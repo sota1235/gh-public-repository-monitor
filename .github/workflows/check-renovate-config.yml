@@ -1,0 +1,22 @@
+name: Checking code quality
+
+on:
+  push:
+    paths:
+      - 'renovate.json'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setting up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: validating renovate config
+        run: npx --package renovate -c 'renovate-config-validator'
