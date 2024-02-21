@@ -19,7 +19,7 @@ const slackClient = new SlackClient(webHookURL);
 
 console.log('script has started!');
 
-setInterval(
+setImmediate(
   () => {
     console.log('searching...');
     ghClient
