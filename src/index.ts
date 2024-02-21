@@ -19,23 +19,25 @@ const slackClient = new SlackClient(webHookURL);
 
 console.log('script has started!');
 
-setImmediate(
-  () => {
-    console.log('searching...');
-    ghClient
-      .searchCode(keyword)
-      .then(async (res: GhSearchCodeRes) => {
-        if (res.data.search.repositoryCount === 0) {
-          console.log('no repository found');
-          return;
-        }
+const runScript = () => {
+  console.log('searching...');
+  ghClient
+    .searchCode(keyword)
+    .then(async (res: GhSearchCodeRes) => {
+      console.log(res);
+      if (res.search.repositoryCount === 0) {
+        console.log('no repository found');
+        return;
+      }
 
-        return await slackClient.post(fmtGhRes(res.data.search.nodes));
-      })
-      .catch((err: Error) => {
-        console.error(err);
-        process.exit(1);
-      });
-  },
-  interval * 60 * 1000,
-);
+      return await slackClient.post(fmtGhRes(res.search.nodes));
+    })
+    .catch((err: Error) => {
+      console.error(err);
+      process.exit(1);
+    });
+};
+
+runScript();
+
+setInterval(runScript, interval * 60 * 1000);

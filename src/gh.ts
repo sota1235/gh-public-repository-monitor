@@ -1,14 +1,12 @@
 import { graphql, GraphqlResponseError } from '@octokit/graphql';
 
 export interface GhSearchCodeRes {
-  data: {
-    search: {
-      repositoryCount: number;
-      nodes: {
-        url: string;
-        name: string;
-      }[];
-    };
+  search: {
+    repositoryCount: number;
+    nodes: {
+      url: string;
+      name: string;
+    }[];
   };
 }
 
