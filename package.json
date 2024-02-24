@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@sota1235/eslint-config": "^4.2.3",
-    "@types/jest": "26.0.24",
+    "@types/jest": "29.5.12",
     "@types/node": "14.18.63",
     "eslint": "^8.56.0",
     "husky": "9.0.11",
